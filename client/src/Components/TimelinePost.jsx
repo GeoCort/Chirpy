@@ -5,6 +5,7 @@ export default function TimelinePost(props){
     // assume content being passed in
     const articleClass= "border-y-2 p-2 first-of-type:border-t-0 grid grid-cols-[50px_1fr] "
     const usernameLinkClass = "text-lg font-semibold hover:text-blue-500"
+    const ifImageClass = "mx-auto max-w-full "
     return(
         <>
         <article className={articleClass}>
@@ -37,7 +38,7 @@ export default function TimelinePost(props){
                 <h6 className={usernameLinkClass}>{"props.user.username" }</h6>
                 <div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos odit quisquam obcaecati commodi deleniti doloribus in corporis quia. Veniam veritatis quis explicabo maxime commodi eveniet cupiditate ratione doloremque reiciendis officia.</p>
-                    <img src={fakePost} className="max-w-full max-h-96"/>
+                    <img src={fakePost} className={ifImageClass}/>
                 </div>
                
             </div>
