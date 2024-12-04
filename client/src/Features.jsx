@@ -6,12 +6,15 @@ export default function Features(props){
     const buttonClass ="ml-auto block py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-800"
     const headers = "text-2xl text-center py-2 font-semibold bg-zinc-100 rounded-lg"
     const linksClass = "text-blue-500 font-semibold mx-4"
+    const oneDay = ()=>{
+        alert("Maybe one day...")
+    }
     return(
         <div className={`mx-3 lg:flex flex-col gap-5 hidden p-5 ${props.darkMode?darkMode:lightMode}`}>
         <input type="text" className="rounded-lg p-3 bg-zinc-50 border-2 " placeholder="Search"/>
         <article className="border-2 rounded-lg p-2 flex items-center">
             <p className="text-xl">Get Premium</p>
-            <button className={buttonClass}>Subscribe</button>
+            <button className={buttonClass} onClick={oneDay}>Subscribe</button>
         </article>
         <section className="border-2 rounded-md ">
             <article className={articleClass}>

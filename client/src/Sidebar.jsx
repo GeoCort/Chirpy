@@ -19,7 +19,7 @@ export default function Sidebar(props){
         <Link className={linkButton}> <CgProfile /><span className="hidden lg:inline text-2xl" >Profile</span> </Link>
         <Link className={linkButton}><IoSettingsSharp /> <span className="hidden lg:inline text-2xl">Settings</span></Link>
         <div className="mt-auto">
-        <Link className={linkButton}><CiLogin className="lg:hidden" /> <span className="hidden lg:inline text-3xl bg-blue-500 text-white py-4 px-3 rounded-lg">Login</span></Link>
+        <Link to="/login" className={linkButton}><CiLogin className="lg:hidden"/> <span className="hidden lg:inline text-3xl bg-blue-500 text-white py-4 px-3 rounded-lg">Login</span></Link>
         </div>
     </div>
 )

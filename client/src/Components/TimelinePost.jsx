@@ -12,7 +12,7 @@ export default function TimelinePost(props){
             <div className="col-span-1 flex flex-col  justify-between items-center gap-3 text-2xl my-6">
             <img className="w-10 h-10 rounded-full"n src={defaultProfilePicture}  />
            <div className="flex items-center ">
-           <CiHeart/>
+           <CiHeart className="hover:cursor-pointer"/>
            <span className="text-sm">0</span>
            </div>
             </div>

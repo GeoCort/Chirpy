@@ -9,7 +9,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [darkMode, setDarkMode] = useState(false)
   return (
-    <main className=' min-h-screen grid grid-cols-[100px_1fr] lg:grid-cols-[250px_1fr_350px] xl:mx-[10%]'>
+    <main className=' min-h-screen grid grid-cols-[100px_1fr] lg:grid-cols-[250px_1fr_350px] xl:mx-[2%] 2xl:mx-[5%]'>
     <Sidebar toggleDark={darkMode}/>
      <Timeline toggleDark={darkMode}/>
      <Features toggleDark={darkMode}/>
