@@ -9,8 +9,16 @@ export default function Login(){
     const inputClass = "p-2 border-2 rounded-md w-full"
     const labelClass = "text-xl text-semibold"
     const inputDiv = "mx-10"
-    const [username,setUsername] = useState("")
-    const [password, setPassword] = useState("")
+    const [loginForm,setLoginForm] = useState({
+        username:"",
+        password:""
+    })
+    const [signUp , setSignUp] = useState({
+        username:"",
+        password:"",
+        age:"",
+        email:""
+    })
     const switchSignupSheet = (e)=>{
         e.preventDefault()
         setLoginScreen(!loginScreen);
@@ -23,13 +31,18 @@ export default function Login(){
         //     password: password
         // })
     }
-    const passwordChange = (e)=>{
-        let input = e.target;
-        setPassword(input.value)
+    const signUpFunction = async  (e)=>{
+        e.preventDefault()
+        let response = await axios.post("/signUp", {signUp})
     }
-    const usernameChange = (e)=>{
+    const loginFormChange = (e)=>{
         let input = e.target;
-        setUsername(input.value)
+        setLoginForm({...loginForm, [input.name]:input.value})
+    }
+    const signUpFormChange = (e)=>{
+        let input = e.target;
+        setSignUp({...signUp, [input.name]:input.value})
+        console.log(signUp)
     }
     return(
         <section className={darkMode}>
@@ -42,29 +55,33 @@ export default function Login(){
                         <h3 className="text-center text-4xl font-semibold m-4 mt-8">Welcome Back! Login</h3>
                         <div className={inputDiv}>
                             <label htmlFor="username" className={labelClass} >Username</label><br/>
-                            <input type="text" name="username" className={inputClass} onChange={usernameChange} required/>
+                            <input type="text" name="username" className={inputClass} onChange={loginFormChange} required/>
                         </div>
                         <div className={inputDiv}>
                             <label htmlFor="loginPassword" className={labelClass} >Password</label><br/>
-                            <input type="password" name="password" id="loginPassword" className={inputClass} onChange={passwordChange}  required/>
+                            <input type="password" name="password" id="loginPassword" className={inputClass} onChange={loginFormChange}  required/>
                         </div>
                         <button className="mx-10 text-white bg-blue-600 rounded-md py-2 hover:bg-blue-400">Login</button>
                         <p className="text-center text-italic">Not a user? <button onClick={switchSignupSheet} className="text-blue-500 underline underline-offset-2">Sign up</button></p>
                     </form>
-                </div> :  <div className="w-1/2 p-10">
-                    <form className="bg-white min-h-full rounded-lg p-4 flex flex-col gap-4">
+                </div> :  <div className="w-full lg:w-1/2 p-10">
+                    <form className="bg-white min-h-full rounded-lg p-4 flex flex-col gap-4" onSubmit={signUpFunction}>
                         <h3 className="text-center text-4xl font-semibold m-4 mt-8">Signup</h3>
                         <div className={inputDiv}>
                             <label htmlFor="username" className={labelClass}>Username</label><br/>
-                            <input type="text" name="username" className={inputClass} required/>
+                            <input type="text" name="username" className={inputClass} onChange={signUpFormChange} required/>
                         </div>
                         <div className={inputDiv}>
-                            <label htmlFor="loginPassword" className={labelClass} >Email</label><br/>
-                            <input type="email" name="email" id="loginPassword" className={inputClass} required/>
+                            <label htmlFor="email" className={labelClass} >Email</label><br/>
+                            <input type="email" name="email" id="email" className={inputClass} onChange={signUpFormChange} required/>
+                        </div>
+                        <div className={inputDiv}>
+                            <label htmlFor="age" className={labelClass} >Age</label><br/>
+                            <input type="number" name="age" id="age" min={14} max={100} className={inputClass} onChange={signUpFormChange} required/>
                         </div>
                         <div className={inputDiv}>
                             <label htmlFor="loginPassword" className={labelClass} >Password</label><br/>
-                            <input type="password" name="password" id="loginPassword" className={inputClass} required/>
+                            <input type="password" name="password" id="loginPassword" className={inputClass} onChange={signUpFormChange} required/>
                         </div>
                         <button className="mx-10 text-white bg-blue-600 rounded-md py-2 hover:bg-blue-400">Login</button>
                         <p className="text-center text-italic">Not a user? <button onClick={switchSignupSheet} className="text-blue-500 underline underline-offset-2">Sign up</button></p>
