@@ -46,7 +46,7 @@ export default function Login(){
     }
     return(
         <section className={darkMode}>
-            <article className="h-5/6 bg-zinc-50 rounded-xl flex max-w-[1200px] xl:mx-auto">
+            <article className="h-5/6 bg-zinc-50 rounded-xl flex max-w-[1200px] xl:mx-auto ">
                 <div className="hidden lg:block w-1/2">
                     <img src={chirpy} className="w-full object-cover min-h-full max-h-full rounded-lg shadow-lg"/>
                 </div>

@@ -1,5 +1,7 @@
+require("dotenv").config()
 const asyncHandler = require('express-async-handler')
 const {PrismaClient} = require('prisma/prisma-client')
+const jwt = require('jsonwebtoken')
 const prisma = new PrismaClient()
 module.exports.createAccount = asyncHandler( async (req,res)=>{
     try{
@@ -20,6 +22,34 @@ module.exports.createAccount = asyncHandler( async (req,res)=>{
     }
 })
 
+module.exports.login = asyncHandler( async (req,res)=>{
+    // get the username and password from login request
+    let {username,password} = req.body;
+    // verify username and password
+    let user = await  prisma.user.findUnique({
+        select:{
+            username:true,
+            id:true
+        },
+        where:{
+            username : username
+        }
+    })
+    if(!user){
+        res.json({
+            error:"Username or Password incorrect"
+        })
+    }
+    if(!user.password == password){
+        res.json({
+            error:"Username or Password incorrect"
+        })
+    }
+    //TODO
+    let token = jwt.sign(user, process.env.JWT_SECRETKEY, { expiresIn: '10d' })
+    res.json({user, token})
+    
+})
 module.exports.getUsers = asyncHandler( async (req,res)=>{
     try{
        const users = await prisma.user.findMany({

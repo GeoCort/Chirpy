@@ -11,6 +11,8 @@ import {
   Link,
   BrowserRouter,
 } from "react-router-dom";
+import AllUsers from './ AllUsers.jsx'
+import UserProfile from './UserProfile.jsx'
 const router = createBrowserRouter([{
   path:"/login",
   element:<Login/>,
@@ -19,13 +21,24 @@ const router = createBrowserRouter([{
 {
   path:"/",
   element:<App/>,
-  errorElement:<Error/>
+  errorElement:<Error/>,
+  children:[
+    {
+      path:"/users",
+      element:<AllUsers/>
+    },
+    {
+      path:"/users/:id",
+    element:<UserProfile/>
+    }
+  ]
 },
 {
   path:"/home",
   element:<App/>,
   errorElement:<Error/>
-}])
+},
+])
 
 createRoot(document.getElementById('root')).render(
   <RouterProvider router = {router}/>,
